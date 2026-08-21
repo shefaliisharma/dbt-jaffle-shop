@@ -7,6 +7,10 @@ models:
         data_tests:
           - unique
           - not_null
+      - name: first_name
+        description: customer's first name 
+      - name: last_name 
+        description: customer's last name
           
   - name: stg_jaffle_shop__orders
     description: One order per row.
@@ -23,8 +27,13 @@ models:
               arguments:
                 values: ['completed', 'shipped', 'placed', 'return_pending', 'returned']
       - name: customer_id
+        description: Foreign key for the orders table from the customers table
         data_tests:
           - relationships:
               arguments: 
                 to: ref('stg_jaffle_shop__customers')
                 field: customer_id
+      - name: order_date
+        description: The date when order was placed.
+      - name: _etl_loaded_at
+        description: The datetime when the data was loaded in the table.

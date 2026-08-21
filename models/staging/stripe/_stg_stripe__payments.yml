@@ -1,0 +1,18 @@
+models:
+  - name: stg_stripe__payments
+    description: The grain of this table is payment made per row.
+    columns:
+    - name: payment_id
+      description: Primary key for the payments table, sourced through Stripe
+    - name: order_id
+      description: Foreign key for the payments table, in relationship with orders table
+    - name: payment_method
+      description: Method used for payment
+    - name: status
+      description: "{{ doc('payment_status')}}"
+    - name: amount
+      description: The payment amount made within the transaction, this no. is in dollars
+    - name: created_at
+      description: The date when the payment was made.
+    - name: _batched_at
+      description: Datetime when this data was batched and pushed into the database.

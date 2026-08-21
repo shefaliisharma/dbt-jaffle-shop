@@ -2,6 +2,7 @@ sources:
   - name: stripe 
     database: raw 
     schema: stripe 
+    description: A clone of the Stripe payments data.
     tables:
       - name: payment
         config:
@@ -9,3 +10,16 @@ sources:
             loaded_at_field: _batched_at
             warn_after: {count: 20, period: day}
             error_after: {count: 30, period: day}
+        columns:
+          - name: id
+            description: Primary key for the payments table.
+          - name: paymentmethod
+            description: Method used to make the payment by the customer
+          - name: status
+            description: Payment status
+          - name: amount
+            description: Payment amount paid in the transaction, the value is in cents
+          - name: created
+            description: The date when the payment was made.
+          - name: _batched_at
+            description: Datetime when this data was batched and pushed into the database.
